@@ -1,0 +1,11 @@
+<h1>List of Items:</h1>
+<ul>
+<% @items.each do |item| %>
+    <a href="/items/<%= item.id %>">
+        <li> <%= item.name %> </li>
+    </a>
+<% end %>
+</ul>
+
+<form action="/items/new" method="post">
+<input type="submit" value="Create a new item">

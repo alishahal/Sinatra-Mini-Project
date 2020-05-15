@@ -1,0 +1,11 @@
+<h1>List of Carts:</h1>
+<ul>
+<% @carts.each do |cart| %>
+    <a href="/carts/<%= cart.id %>">
+        <li> <%= cart.name %> </li>
+    </a>
+<% end %>
+</ul>
+
+<form action="/carts/new" method="post">
+<input type="submit" value="Create a new cart">

@@ -1,0 +1,34 @@
+<h2>Cart Info</h2>
+
+<h4>Name: <%= @cart.name %></h4>
+
+<h4>Customer Name: <%= @cart.customer.name %></h4>
+
+<h4>Items in Cart: </h4>
+<% @cart.cart_items.each do |cartitem| %>
+    <a href="/items/<%= cartitem.item.id%>">
+    <li><%=cartitem.quantity_of_item%> <%= cartitem.item.name %>(s)</li></a>
+<% end %>
+
+<h4>Total Price: </h4>
+<%total = 0%>
+<% @cart.cart_items.each do |cartitem| %>
+    <%price = cartitem.quantity_of_item * cartitem.item.price %>
+    <%total += price%>
+<% end %>
+$<%=total%>
+
+
+
+<br>
+<br>
+<br>
+<form action="/carts/<%= @cart.id %>/edit" method="post">
+<input type="hidden" name="_method" value="edit">
+<input type="submit" value="Edit this Cart">
+</form>
+
+<form action="/carts/<%= @cart.id %>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete this cart">
+</form>

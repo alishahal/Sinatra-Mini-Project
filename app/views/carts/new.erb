@@ -1,0 +1,35 @@
+<h2>Create a new Cart!</h1>
+
+<form action="/carts" method="POST">
+    <label>Name:</label>
+    <input type="text" name="cart[name]">
+
+    <p> Select an existing customer or create a new one below. <p>
+    <h5> Existing Customers </h3>
+    <select name="cart[customer_id]">
+    <option disabled selected value> -- select an option -- </option>
+    <% @customers.each do |customer| %>
+        <option value=<%= customer.id%> >
+            <%= customer.name %>
+        </option>
+    <% end %>
+    </select>
+
+    <label>Create a new customer:</label>
+    <input type="text" name="customer[name]">
+    
+
+
+
+<h4>Add Items in Cart: </h4>
+<% @items.each do |item|%>
+    <p><label><%= item.name %> $<%= item.price %> 
+    <input type="checkbox" name="item[]" value="<%= item.id%>" id="<%= item.name%>">
+    <label>Quantity
+    <input type="number" id="quantity_of_item" value="quantity_of_item" name="quantity_of_item">
+    </p>
+<% end %>
+
+<input type="submit" value="Submit">
+
+</form>

@@ -1,0 +1,30 @@
+<h2>Update Cart</h2>
+
+<form action="/carts/<%= @cart.id %>" method="post">
+<h4>Edit the Cart's Name:</h4>
+<input type="hidden" name="_method" value="patch">
+    <input type="text" name="cart[name]" value="<%= @cart.name %>">
+
+<h4>Customer Name: <%= @cart.customer.name %></h4>
+
+<h4>Add or Delete Items in Cart: </h4>
+<% @items.each do |item|%>
+    <% @cart.cart_items.map do |cartitem|%>
+     <% if cartitem.item_id == item.id%>
+        <p><label><%= item.name %> $<%= item.price %>  
+        <input type="checkbox" name="item[]" value="<%= item.id%>" id="<%= item.name%>" checked>
+        <label>Quantity
+    <input type="number" id="quantity_of_item" value="quantity_of_item" name="quantity_of_item"></p>
+    <% end %>
+    <% end %>
+    <p><label><%= item.name %> $<%= item.price %> 
+    <input type="checkbox" name="item[]" value="<%= item.id%>" id="<%= item.name%>">
+    <label>Quantity
+    <input type="number" id="quantity_of_item" value="quantity_of_item" name="quantity_of_item">
+    </p>
+    
+<% end %>
+
+<br>
+<input type="submit" value="Update cart">
+ </form>

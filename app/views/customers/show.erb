@@ -1,0 +1,23 @@
+<h2>Customer Info</h2>
+
+<h4>Name: </h4>
+<%= @customer.name %>
+
+<h4>Cart: </h4>
+<a href="/carts/<%=@customer.cart.id%>"><%= @customer.cart.name %></a>
+
+<br>
+<br>
+
+<form action="/customers/<%= @customer.id %>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete this customer">
+</form>
+
+<form action="/customers/<%= @customer.id %>/edit" method="post">
+<input type="hidden" name="_method" value="edit">
+<input type="submit" value="Edit this customer">
+
+
+
+
